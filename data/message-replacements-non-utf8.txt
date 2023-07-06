@@ -1,0 +1,8 @@
+# Convert from non UTF-8 to UTF-8.
+
+# Mac OS Roman:
+Lot of pain for not much gain…==>Lot of pain for not much gain‚Ä¶
+
+# Windows-1252:
+Change to use © instead of (c) in Sybase copyright==>Change to use ¬© instead of (c) in Sybase copyright
+Thanks to: Jan Hlavat˝==>Thanks to: Jan Hlavat√Ω

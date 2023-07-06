@@ -1,0 +1,57 @@
+Alexander Kobets <> AlexanderK
+Axel Hamann <> AxelH
+Bart Oldeman <> BartO
+Bartosz Polednia <> BartoszP
+Berth-Olof Bergman <> BerthOlofB
+Bob Piskac <> BobP
+Bryce Simonds <> BryceS
+Carl Young <> CarlY
+Charles Lecklider <> CharlesL
+Christof Meerwald <> ChristofM
+Daniel Cletheroe <> DanielC
+David Azarewicz <> DavidA
+David Golub <> DavidG
+Dave Milici <> DavidM
+Dmitry Mityugov <> DmitryM
+Dmitry V. Uvarov <> DmitryU
+Ernest ter Kuile <> ErnestK
+Frank Beythien <> FrankB
+Gregg Young <> GreggY
+Hans-Bernhard Broeker <> Hans-BernhardB
+Hartmuth Gutsche <> HartmuthG
+Jack Schueler <> JackS
+Jack Troughton <> JackT
+Jan van Wijk <> JanVanW
+Javier Gutierrez <> JavierG
+Jim Buckeyne <> JimB
+Jim Shaw <> JimS
+Jiří Malák <> JiriM
+Johannes Diedrich <> JohannesD
+Ken Blackburn <> KenB
+Kendall Bennett <> KendallB
+Dr. Lawrence W. Haynes <> LawrenceH
+Leif Ekblad <> LeifE
+Lynn McGuire <> LynnM
+Mark Overholser <> MarkO
+Marty Stanquist <> MartyS
+Mat Nieuwenhoven <> MatN
+Michal Necasek <> MichalN
+Norbert Matzke <> NorbertM
+Paul S. Person <> PaulP
+Peter C. Chapin <> PeterC
+Peter Skovgaard <> PeterS
+Philipp Diethelm <> PhilippD
+Roald Ribe <> RoaldR
+Roman Trunov <> RomanT
+# Commits on the SciTech build machine. This was always by an employee.
+# Many of these were by Michal Necasek. However, it’s not clear they
+# all were, so we do not rename in this case:
+# script_daemon 
+Stephan Lichtenauer <> StephanL
+Stephen Howe <> StephenH
+Steve Adam <> SteveA
+Steven H. Levine <> StevenL
+Vesa Jaaskelainen <> VesaJ
+Victor Tikhonov <> VictorT
+Walter Briscoe <> WalterB
+Wilton Helm <> WiltonH

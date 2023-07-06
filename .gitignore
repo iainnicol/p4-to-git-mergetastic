@@ -1,0 +1,10 @@
+/build/p4-bin/
+/build/p4-fusion/
+/build/p4source-*/
+/build/p4source.tgz
+/build/pdm-bin/
+/build/pipx-home/
+
+/src/**/__pycache__/
+
+/.pdm-python

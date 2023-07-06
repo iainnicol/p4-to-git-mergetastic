@@ -1,0 +1,7 @@
+# Don't need p4 changeset number in first line of git commit message.
+regex:^[0-9]+ - ==>
+
+# And change the format of the remaining changeset number. (The depot
+# paths aren't useful because we first export the root directory, then
+# manually hive off the paths into different branches.)
+regex:(?m)^\[p4-fusion: depot-paths = "[^"]*": change = ([0-9]+)\]$==>P4:\1

@@ -1,0 +1,22 @@
+[project]
+name = "p4-to-git-mergetastic"
+version = "1.0.0"
+description = "For converting p4 to git, preserving branches & merges."
+authors = [
+    {name = "Iain Nicol"},
+]
+dependencies = [
+    "more-itertools>=9.1.0",
+    "networkx>=3.1",
+]
+requires-python = ">=3.11"
+license = {text = "AGPL-3.0-or-later"}
+
+[tool.pdm.dev-dependencies]
+format = [
+    "black>=23.3.0",
+]
+lint = [
+    "mypy>=1.4.1",
+    "ruff>=0.0.276",
+]

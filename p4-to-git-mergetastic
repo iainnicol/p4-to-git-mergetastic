@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Copyright © 2023 Iain Nicol
+
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+set -eu -o pipefail
+
+outputDirectory="repo.git/"
+eval set -- "$(getopt --shell=bash --options='ho:' --longoptions='help,version,output-directory:' --name="$0" -- "$@")"
+while true; do
+    case "$1" in
+    '-h' | '--help')
+        cat <<EOF
+$0: For converting p4 to git, preserving branches & merges
+
+Usage:
+  export P4PORT=server:1666
+  export P4CLIENT=client
+  export P4USER=user
+  export P4PASSWD="password"
+  $0 -o repo.git/
+
+Options:
+  -o, --output-directory=DIR
+                set the output directory (of the bare git repo)
+  --help        display this help message, then exit
+  --version     display the version, then exit
+EOF
+        exit
+        ;;
+    '--version')
+        echo "$0: $(git describe)"
+        exit
+        ;;
+    '-o' | '--output-directory')
+        outputDirectory="$(realpath "$2")"
+        shift 2
+        continue
+        ;;
+    '--')
+        shift
+        break
+        ;;
+    *)
+        echo >&2 'Unrecognised parsed argument'
+        exit 1
+        ;;
+    esac
+done
+
+# Didn’t set this earlier, to avoid cluttering --help and --version.
+set -x
+
+myDir="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
+
+p4Path="$(realpath "$myDir/build/p4-bin/bin.linux26"*/)"
+p4FusionPath="$(realpath "$myDir/build/p4-fusion/build/p4-fusion/")"
+pdmPath="$(realpath "$myDir/build/pdm-bin/")"
+PATH="$p4Path:$p4FusionPath:$pdmPath:$PATH"
+
+"$myDir/src/main.sh" "$outputDirectory"
