@@ -16,11 +16,21 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import subprocess
-from typing import NewType
+from typing import Mapping, NewType, Optional
 
 Branch = NewType("Branch", str)
 
 
-def git(args: list[str]) -> str:
-    proc = subprocess.run(args=["git"] + args)
+def git(
+    args: list[str],
+    *,
+    input: Optional[bytes] = None,
+    env: Optional[Mapping[str, str]] = None,
+) -> str:
+    proc = subprocess.run(
+        args=["git"] + args,
+        input=input,
+        capture_output=True,
+        env=env,
+    )
     return proc.stdout.decode("utf-8")

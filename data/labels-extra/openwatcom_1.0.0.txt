@@ -1,0 +1,13 @@
+Label:	open_watcom_1.0.0
+
+Update:	2003/01/24 22:40:34
+
+Owner:	KendallB
+
+Description:
+	Label for Open Watcom 1.0.0.
+
+View:
+	//depot/ow_release/1.0/...
+
+Changelist:	22118

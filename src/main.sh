@@ -40,6 +40,19 @@ from the output git repo directory.
 EOF
 parallel <files.txt --will-cite -j8 -d'\n' --keep-order -n1 p4 filelog >filelogs.txt
 
+# Export labels.
+mkdir -p labels/
+labels="$(p4 labels | sed -e 's/^Label //' | sed -e 's/ .*//')"
+i=1
+for label in $labels; do
+  p4 label -o "$label" >"$repoDir/labels/p4-exported-label$i.txt"
+  taggedfiles="$(p4 files "@$label" | sort)"
+  changelist="$(echo "$taggedfiles" | grep -oE "change [0-9]+ \([a-zA-Z+]+\)$" | grep -Eo '[0-9]+' | sort -u | tail -n1)"
+  printf "Changelist:\t%s" "$changelist" >>"$repoDir/labels/p4-exported-label$i.txt"
+  i=$((i + 1))
+done
+cp "$dataDir/labels-extra/"* labels/
+
 # Get rid of the imaginary null-dated initial commit, created by
 # p4-fusion.
 secondCommit="$(git log --format="%H" | tail -n2 | head -n1)"
@@ -53,6 +66,9 @@ git filter-repo --replace-message "$dataDir/message-replacements-non-utf8.txt"
 
 git branch --move __p4_export__everything_no_branches
 "$myDir/split-branches.sh"
+
+pdm run "$myDir/make_tags.py" labels/*
+rm -rf "labels/"
 
 pdm run "$myDir/make_merges.py"
 rm changelists.txt files.txt filelogs.txt
@@ -70,10 +86,10 @@ git branch -D __p4_export__everything_no_branches
 # Perforce does not know the user’s email address. Second, I don’t think
 # it’s fair to put email addresses into a git log without asking: git
 # logs are more likely to be scraped by spammers than an old Perforce
-# depot.
+# depot. Besides, tags do not end up with email addresses, because
+# labels are exported using different commands to commits.
 #
-# However, if you want to keep email addresses, comment out the
-# following line, or edit the mailmap.
+# So, if you want email addresses, add them to the mailmap.
 git filter-repo --email-callback 'return b""'
 # Convert from Perforce usernames, to full names.
 git filter-repo --mailmap "$dataDir/mailmap.txt"
